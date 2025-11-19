@@ -3,20 +3,11 @@ Live Countdown Timer
 
 A clean, responsive countdown timer with elegant styling and glowing effects.
 
-Features
---------
-- Modern gold-themed design with glowing text effects
-- Fully responsive - works on all screen sizes
-- Real-time countdown updates every second
-- Animated glow effects for visual appeal
-- Zero-padded time display (always shows two digits)
-- Automatic completion message when countdown ends
-
 Installation
 ------------
 1. Download the HTML file
-2. Open in any modern web browser
-3. No additional dependencies required
+2. Add source 'Browser' on OBS
+3. 'Browser': Properties - ☐ local file - add 'countdown.html'
 
 Customization
 -------------
@@ -27,6 +18,7 @@ You can also customize:
 - Colors by modifying the CSS color values
 - Fonts by changing the font-family
 - Styling by adjusting the CSS properties
+- Add background picture
 
 Browser Support
 ---------------
