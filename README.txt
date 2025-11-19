@@ -20,7 +20,7 @@ Installation
 
 Customization
 -------------
-To change the target date, edit this line in the JavaScript:
+To change the target date, edit line 88 in the JavaScript:
 const targetDate = new Date("2025-12-27T18:00:00");
 
 You can also customize:
