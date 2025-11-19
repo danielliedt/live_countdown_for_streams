@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Countdown Timer</title>
+
+  <style>
+    /* Base layout */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+      background-size: cover;
+      font-family: 'Arial', sans-serif;
+      color: gold;
+      text-align: center;
+    }
+
+    /* Text shadow for glowing effect */
+    * {
+      text-shadow: 0 0 10px #000, 0 0 20px #cfa600;
+      box-sizing: border-box;
+    }
+
+    /* Heading */
+    h1 {
+      font-size: clamp(1.5rem, 5vw, 3rem);
+      margin-bottom: 3vh;
+      letter-spacing: 2px;
+    }
+
+    /* Countdown box */
+    #countdown {
+      font-size: clamp(1.2rem, 4vw, 2.5rem);
+      background: rgba(0, 0, 0, 0);
+      padding: clamp(10px, 3vw, 30px) clamp(20px, 5vw, 40px);
+      border-radius: 20px;
+      border: 2px solid gold;
+      box-shadow: 0 0 25px #cfa600;
+      display: inline-block;
+    }
+
+    /* Glow effect */
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 10px #000, 0 0 20px #cfa600; }
+      50% { text-shadow: 0 0 25px #fff, 0 0 50px #ffcc00; }
+    }
+
+    #countdown span {
+      animation: glow 2s infinite;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      body {
+        justify-content: flex-start;
+        padding-top: 20vh;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      #countdown {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Countdown Timer</h1>
+  <div id="countdown">
+    <span id="days"></span>d :
+    <span id="hours"></span>h :
+    <span id="minutes"></span>m :
+    <span id="seconds"></span>s
+  </div>
+
+  <script>
+    // Countdown target: December 27, 2025 at 6:00 PM
+    const targetDate = new Date("2025-12-27T18:00:00");
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timeRemaining = targetDate - now;
+
+      // Check if countdown has ended
+      if (timeRemaining < 0) {
+        document.getElementById("countdown").innerHTML = "Event Started!";
+        return;
+      }
+
+      // Calculate time units
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      // Update display with zero-padding for hours, minutes, seconds
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+      document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+      document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+    }
+
+    // Initialize countdown and update every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
